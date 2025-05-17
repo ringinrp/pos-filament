@@ -71,10 +71,10 @@ class ProductResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('price')
-                    // ->money()
-                    // ->sortable(),
                     ->label('Harga')
-                    ->formatStateUsing(fn($state) => 'Rp ' . number_format(intval($state), 0, ',', '.')),
+                    ->money('IDR', true)
+                    ->sortable(),
+                // ->formatStateUsing(fn($state) => 'Rp ' . number_format(intval($state), 0, ',', '.')),
                 Tables\Columns\IconColumn::make('is_active')
                     ->label('Tersedia')
                     ->boolean(),
