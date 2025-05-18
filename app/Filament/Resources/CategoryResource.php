@@ -36,13 +36,13 @@ class CategoryResource extends Resource
                     ->required()
                     ->live(onBlur: true)
                     ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->readOnly()
-                    // ->afterStateUpdated(function (Closure $set) {
-                    //     $set('slug', Category::generateUniqueSlug($state));
-                    // })
-                    ->maxLength(255),
+                // Forms\Components\TextInput::make('slug')
+                //     ->required()
+                //     ->readOnly()
+                // ->afterStateUpdated(function (Closure $set) {
+                //     $set('slug', Category::generateUniqueSlug($state));
+                // })
+                // ->maxLength(255),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('is_active')

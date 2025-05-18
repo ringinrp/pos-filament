@@ -36,10 +36,10 @@ class ProductResource extends Resource
                     ->maxLength(255),
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name'),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255)
-                    ->readOnly(),
+                // Forms\Components\TextInput::make('slug')
+                //     ->required()
+                //     ->maxLength(255)
+                //     ->readOnly(),
                 Forms\Components\TextInput::make('stock')
                     ->required()
                     ->numeric()
