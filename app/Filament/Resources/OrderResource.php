@@ -153,6 +153,10 @@ class OrderResource extends Resource
     {
         return Repeater::make('orderProducts')
             ->relationship()
+            ->live()
+            ->columns([
+                'md' => 10,
+            ])
             ->schema([
                 Forms\Components\Select::make('product_id')
                     ->label('Produk')
@@ -161,26 +165,34 @@ class OrderResource extends Resource
                     ->columnSpan([
                         'md' => 5,
                     ])
-                    ->afterStateUpdated(function ($state,  Forms\Set $set, Forms\Get $get) {}),
+                    ->afterStateUpdated(function ($state,  Forms\Set $set, Forms\Get $get) {
+                        $product = Product::find($state);
+                        $set('unit_price', $product->price);
+                        $set('stock', $product->stock ?? 0);
+                    }),
                 Forms\Components\TextInput::make('quantity')
+                    ->label('Jumlah Pembelian')
                     ->required()
                     ->numeric()
                     ->columnSpan([
-                        'md' => 1,
+                        'md' => 2,
                     ]),
                 Forms\Components\TextInput::make('stock')
-                    ->required()
+                    ->label('Stok')
+                    // ->required()
                     ->numeric()
-                    ->disabled()
+                    // ->disabled()
+                    ->readOnly()
                     ->columnSpan([
                         'md' => 1,
                     ]),
                 Forms\Components\TextInput::make('unit_price')
-                    ->required()
+                    ->label('Harga')
+                    // ->required()
                     ->numeric()
                     ->readOnly()
                     ->columnSpan([
-                        'md' => 2,
+                        'md' => 1,
                     ]),
 
             ]);
